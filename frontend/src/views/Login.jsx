@@ -34,7 +34,7 @@ export default function Login() {
     <div className="login-signup-form animated fadeInDown">
       <div className="form">
         <form onSubmit={onSubmit}>
-          <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" alt="logo" className="logo"/>
+          <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" height="100" width="300" alt="logo" className="logo"/>
           <h1 className="title">Login into your account</h1>
 
           {message &&
