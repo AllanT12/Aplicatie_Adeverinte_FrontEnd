@@ -40,7 +40,7 @@ export default function Users() {
     <div>
       <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
         <h1>Utilizatori</h1>
-        <Link className="btn-add" to="/users/new">Add new user</Link>
+        <Link className="btn-add" to="/users/new">Adauga Utilizator</Link>
       </div>
       <div className="card animated fadeInDown">
           <div> 0 = Student, 1 = Secretar, 2 = Admin, 3 = Secretar Sef, 4= Decan</div>

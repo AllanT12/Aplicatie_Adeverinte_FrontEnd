@@ -39,7 +39,7 @@ function Appointments() {
         <div>
             <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
                 <h1>Adeverinte</h1>
-                <Link className="btn-add" to="/appointments/new">New Adeveinta</Link>
+                <Link className="btn-add" to="/appointments/new">Adauga Adeveinta</Link>
             </div>
             <div className="card animated fadeInDown">
                 <table>
@@ -63,16 +63,16 @@ function Appointments() {
                     }
                     {!loading &&
                         <tbody>
-                        {users.map(u => (
+                        {users && users.map(u => (
                             <tr key={u.id}>
                                 <td>{u.id}</td>
                                 <td>{u.motivatie}</td>
                                 <td>{u.data}</td>
-                                <td>{u.consultant.name}</td>
+                                <td>{u.stare}</td>
                                 <td>
-                                    <Link className="btn-edit" to={'/appointments/' + u.id}>Edit</Link>
+                                    <Link className="btn-edit" to={'/appointments/' + u.id}>Accept</Link>
                                     &nbsp;
-                                    <button className="btn-delete" onClick={ev => onDeleteClick(u)}>Cancel</button>
+                                    <button className="btn-delete" onClick={ev => onDeleteClick(u)}>Respins</button>
                                 </td>
                             </tr>
                         ))}
