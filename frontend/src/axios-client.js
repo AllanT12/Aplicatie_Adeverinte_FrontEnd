@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: `http://localhost:8000/`,timeout: 5000,
+  baseURL: `https://aplicatie-adeverinte-backend.azurewebsites.net/`,timeout: 5000,
   headers: {
 		Authorization: localStorage.getItem('ACCESS_TOKEN')
 			? 'Token ' + localStorage.getItem('ACCESS_TOKEN')
