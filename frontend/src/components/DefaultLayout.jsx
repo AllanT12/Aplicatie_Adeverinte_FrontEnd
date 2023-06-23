@@ -28,7 +28,7 @@ export default function DefaultLayout() {
   return (
     <div id="defaultLayout">
       <aside>
-        <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" alt="logo" className="logo"/>
+        <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" height="100" width="200" alt="logo" className="logo"/>
         <Link to="/dashboard">Adeverinte</Link>
         <Link to="/availability">Specializari</Link>
         <Link to="/users">Utilizatori</Link>
@@ -40,7 +40,7 @@ export default function DefaultLayout() {
           </div>
 
           <div>
-            {user.username} &nbsp; &nbsp;
+            {user?.username} &nbsp; &nbsp;
             <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
           </div>
         </header>
