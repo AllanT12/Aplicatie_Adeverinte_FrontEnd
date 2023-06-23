@@ -25,34 +25,67 @@ export default function DefaultLayout() {
       })
   }, [])
 
-  return (
-    <div id="defaultLayout">
-      <aside>
-        <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" height="100" width="200" alt="logo" className="logo"/>
-        <Link to="/dashboard">Adeverinte</Link>
-        <Link to="/availability">Specializari</Link>
-        <Link to="/users">Utilizatori</Link>
-      </aside>
-      <div className="content">
-        <header>
-          <div>
-            Adeverinte App
-          </div>
+  if(user?.role === 2) {
+    return (
+        <div id="defaultLayout">
+          <aside>
+            <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" height="100" width="200"
+                 alt="logo" className="logo"/>
+            <Link to="/dashboard">Adeverinte</Link>
+            <Link to="/availability">Specializari</Link>
+            <Link to="/users">Utilizatori</Link>
+          </aside>
+          <div className="content">
+            <header>
+              <div>
+                Adeverinte App
+              </div>
 
-          <div>
-            {user?.username} &nbsp; &nbsp;
-            <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
+              <div>
+                {user?.username} &nbsp; &nbsp;
+                <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
+              </div>
+            </header>
+            <main>
+              <Outlet/>
+            </main>
+            {notification &&
+                <div className="notification">
+                  {notification}
+                </div>
+            }
           </div>
-        </header>
-        <main>
-          <Outlet/>
-        </main>
-        {notification &&
-          <div className="notification">
-            {notification}
+        </div>
+    )
+  } else {
+    return (
+        <div id="defaultLayout">
+          <aside>
+            <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" height="100" width="200"
+                 alt="logo" className="logo"/>
+            <Link to="/dashboard">Adeverinte</Link>
+          </aside>
+          <div className="content">
+            <header>
+              <div>
+                Adeverinte App
+              </div>
+
+              <div>
+                {user?.username} &nbsp; &nbsp;
+                <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
+              </div>
+            </header>
+            <main>
+              <Outlet/>
+            </main>
+            {notification &&
+                <div className="notification">
+                  {notification}
+                </div>
+            }
           </div>
-        }
-      </div>
-    </div>
-  )
+        </div>
+    )
+  }
 }

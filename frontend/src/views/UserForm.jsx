@@ -101,7 +101,7 @@ export default function UserForm() {
   return (
     <>
       {user.id && <h1>Update User: {user.first_name} {user.last_name}</h1>}
-      {!user.id && <h1>New User</h1>}
+      {!user.id && <h1>Adauga Utilizator</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -122,12 +122,12 @@ export default function UserForm() {
             <input value={user.username} onChange={ev => setUser({...user, username: ev.target.value})} placeholder="Username"/>
             <input value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email"/>
             <select value={roles} onChange={ev => setRoles(ev.target.value)}>
-                <option value="">Select Specializare</option>
+                <option value="">Selecteaza Specializare</option>
                 {spec && spec.map((spec) => (
                     <option key={spec.id} value={spec.id}>{spec.nume}</option>
                 ))}
             </select>
-            <button onClick={addSpec} className="btn">Add Specializare</button>
+            <button onClick={addSpec} className="btn">Adauga Specializare</button>
             {specs &&
           <div className="alert" id="specializari">
 

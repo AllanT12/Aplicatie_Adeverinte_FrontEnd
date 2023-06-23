@@ -82,7 +82,20 @@ input:focus {
 .btn-delete {
     background-color: #b72424;
 }
-
+.btn-success {
+    background-color: #ceba00;
+    padding: 0.5rem 0.75rem;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    border: 0;
+    text-decoration: none;
+    color: #FFFFFF;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
 .btn-logout {
     text-decoration: none;
     padding: 0.75rem 1.5rem;

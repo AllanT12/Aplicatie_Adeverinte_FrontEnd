@@ -6,14 +6,9 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 export default function AppointmentForm() {
     const navigate = useNavigate();
-    let {id} = useParams();
-    const [client, setClient] = useState(null);
-
-
     const [user, setUser] = useState({
        motivatie: ''
     })
-    const [users, setUsers] = useState([]);
     const [errors, setErrors] = useState(null)
     const [errorsMessage, setErrorsMessage] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -24,9 +19,9 @@ export default function AppointmentForm() {
     const onSubmit = ev => {
         ev.preventDefault()
             console.log(user);
-            axiosClient.post('/adeverinte/create/', user)
+            axiosClient.post('/adeverinte/crate/', user)
                 .then(() => {
-                    setNotification('Appointment was successfully created')
+                    setNotification('Cererea a fost inregistrata asteptati aprobarea')
                     navigate('/dashboard')
                 })
                 .catch(err => {
@@ -44,8 +39,7 @@ export default function AppointmentForm() {
 
     return (
         <>
-            {user.id && <h1>Update Appointment</h1>}
-            {!user.id && <h1>New Appointment</h1>}
+            {!user.id && <h1>Adeverinta noua</h1>}
             <div className="card animated fadeInDown">
                 {loading && (
                     <div className="text-center">
@@ -66,19 +60,8 @@ export default function AppointmentForm() {
                 }
                 {!loading && (
                     <form onSubmit={onSubmit}>
-                        <input value={user.description} onChange={ev => setUser({...user, description: ev.target.value})} placeholder="Description"/>
-                        <label >Enter a date and time:</label>
-                        <input type="datetime-local" id="start" name="trip-start"
-                               value={user.date}  onChange={ev => setUser({...user, date: ev.target.value})} min={new Date().toISOString().slice(0, 16)} />
-                        <label >Choose your consultant: </label>
-                        <select value={user.consultant_id} onChange={ev => setUser({...user, consultant_id: ev.target.value})}>
-                            <option value="">Select Consultant</option>
-                            {users.map(us => (
-                                <option key={us.id} value={us.id}>{us.name}</option>
-                            ))}
-                        </select>
-                        <br></br>
-                        <button className="btn">Save</button>
+                        <input value={user.motivatie} onChange={ev => setUser({...user, motivatie: ev.target.value})} placeholder="Motiv cerere adeverinta"/>
+                        <button className="btn">Trimite</button>
                     </form>
                 )}
             </div>
