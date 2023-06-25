@@ -50,14 +50,14 @@ function Appointments() {
             responseType: 'blob',
         }).then(res => {
             fileDownload(res.data, 'filename.pdf');
-            console.log(res.data);
         }).catch(err => {
+            setNotification('Nu a fost aprobata')
             console.log(err);
         })
     }
     const getUsers = () => {
         setLoading(true)
-        axiosClient.get('/adeverinte/get/')
+        axiosClient.get('/adeverinte/get/0')
             .then(({ data }) => {
                 setLoading(false)
                 console.log(data)
@@ -66,6 +66,17 @@ function Appointments() {
             .catch(() => {
                 setLoading(false)
             })
+    }
+
+    const getRaport = () => {
+        axiosClient.get('/adeverinte/get/1')
+            .then(res => {
+            fileDownload(res.data, 'raport.csv');
+            console.log(res.data);
+        }).catch(err => {
+            setNotification('Nu sunt destule adeverinte')
+            console.log(err);
+        })
     }
 
 if(user?.role === 0) {
@@ -116,6 +127,7 @@ else {
         <div>
             <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
                 <h1>Adeverinte</h1>
+                <Link className="btn-add" onClick={ev => getRaport()}>Descarca Raport</Link>
             </div>
             <div className="card animated fadeInDown">
                 <table>
