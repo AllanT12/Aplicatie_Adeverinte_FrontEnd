@@ -32,7 +32,7 @@ function Availability() {
 
   return (
     <>
-      <h1>New Specializare</h1>
+      <h1>Adauga Specializare</h1>
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">

@@ -31,6 +31,7 @@ export default function DefaultLayout() {
           <aside>
             <img src="https://usv.ro/wp-content/uploads/2020/05/sigla-standard-RGB.jpg" height="100" width="200"
                  alt="logo" className="logo"/>
+              <Link to="/dashboard">Setari</Link>
             <Link to="/dashboard">Adeverinte</Link>
             <Link to="/availability">Specializari</Link>
             <Link to="/users">Utilizatori</Link>

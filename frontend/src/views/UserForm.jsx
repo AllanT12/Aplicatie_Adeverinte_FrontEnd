@@ -7,7 +7,7 @@ import ReactDOM from "react-dom/client";
 export default function UserForm() {
   const navigate = useNavigate();
   let {id} = useParams();
-      const [specs, setSelectedSpecs] = useState([])
+      var [specs, setSelectedSpecs] = useState([])
 
   const [user, setUser] = useState({
     first_name: '',
@@ -57,7 +57,9 @@ export default function UserForm() {
   const addSpec = () => {
     console.log(roles-1)
     console.log(spec[roles-1].nume)
-    specs.push(parseInt(roles))
+    var nr = parseInt(roles)
+    console.log(nr)
+    specs.push(nr)
     root.append(spec[roles-1].nume)
   }
   const onSubmit = ev => {
@@ -76,12 +78,6 @@ export default function UserForm() {
         })
     } else {
       user.role =parseInt(user.role)
-      var j =0;
-      for(const i in specs)
-      {
-        user.specializare[j] = parseInt(i)+1;
-        j++;
-      }
       user.user_name = user.username;
       console.log(user)
       axiosClient.post('/users/register/', user)

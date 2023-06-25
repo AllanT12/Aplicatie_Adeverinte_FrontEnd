@@ -25,9 +25,22 @@ function Appointments() {
         if (!window.confirm("Sunteti sigur?")) {
             return
         }
-        axiosClient.delete(`/appointments/${user.id}`)
+        const acc = {accept: false}
+        axiosClient.patch(`/adeverinte/update/${user.id}`, acc)
             .then(() => {
-                setNotification('Adeverinta stearsa')
+                setNotification('Adeverinta respinsa')
+                getUsers()
+            })
+    }
+
+    const onAcceptClick = user => {
+        if (!window.confirm("Sunteti sigur?")) {
+            return
+        }
+        const acc = {accept: true}
+        axiosClient.patch(`/adeverinte/update/${user.id}`, acc)
+            .then(() => {
+                setNotification('Adeverinta acceptata')
                 getUsers()
             })
     }
@@ -88,7 +101,7 @@ if(user?.role === 0) {
                                 <td>{u.id}</td>
                                 <td>{u.motivatie}</td>
                                 <td>{u.data}</td>
-                                <td>Aprobat</td>
+                                <td>{u.stare}</td>
                             </tr>
                         ))}
                         </tbody>
@@ -103,13 +116,14 @@ else {
         <div>
             <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
                 <h1>Adeverinte</h1>
-                <Link className="btn-add" to="/appointments/new">Adauga Adeveinta</Link>
             </div>
             <div className="card animated fadeInDown">
                 <table>
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Student</th>
+                        <th>Specializare</th>
                         <th>Motivatie</th>
                         <th>Date</th>
                         <th>Status</th>
@@ -130,11 +144,13 @@ else {
                         {users && users.map(u => (
                             <tr key={u.id}>
                                 <td>{u.id}</td>
+                                <td>{u.subsemnatul?.first_name} {u.subsemnatul?.last_name}</td>
+                                <td>{u.subsemnatul?.specializare.map(s => s.nume)}</td>
                                 <td>{u.motivatie}</td>
                                 <td>{u.data}</td>
                                 <td>{u.stare}</td>
                                 <td>
-                                    <Link className="btn-edit" to={'/appointments/' + u.id}>Accept</Link>
+                                    <Link className="btn-edit" onClick={ev => onAcceptClick(u)}>Accept</Link>
                                     &nbsp;
                                     <button className="btn-delete" onClick={ev => onDeleteClick(u)}>Respins</button>
                                     &nbsp;
