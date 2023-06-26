@@ -9,6 +9,7 @@ import Users from "./views/Users";
 import UserForm from "./views/UserForm";
 import AppointmentForm from "./views/AppointmentForm.jsx";
 import Availability from "./views/Availability.jsx";
+import Setari from "./views/Setari.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: '/availability',
         element: <Availability />
+      },
+      {
+        path: '/setari',
+        element: <Setari />
       }
     ]
   },

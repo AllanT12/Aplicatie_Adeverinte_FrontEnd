@@ -1,26 +1,26 @@
-import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import axiosClient from "../axios-client.js";
+import {useState} from "react";
 import {useStateContext} from "../context/ContextProvider.jsx";
-import "react-datepicker/dist/react-datepicker.css";
-export default function AppointmentForm() {
+import axiosClient from "../axios-client.js";
+import {useNavigate} from "react-router-dom";
+
+export default function Setari() {
     const navigate = useNavigate();
     const [user, setUser] = useState({
-       motivatie: ''
+        numeFacultate: '',
+        acronim:'',
+        numeUniversitate: ''
     })
     const [errors, setErrors] = useState(null)
     const [errorsMessage, setErrorsMessage] = useState(null)
     const [loading, setLoading] = useState(false)
     const {setNotification} = useStateContext()
 
-
-
     const onSubmit = ev => {
         ev.preventDefault()
             console.log(user);
-            axiosClient.post('/adeverinte/crate/', user)
+            axiosClient.post('/setari/crate/', user)
                 .then(() => {
-                    setNotification('Cererea a fost inregistrata asteptati aprobarea')
+                    setNotification('Setarile au fost salvate cu succes')
                     navigate('/dashboard')
                 })
                 .catch(err => {
@@ -33,12 +33,10 @@ export default function AppointmentForm() {
                         setErrorsMessage(response.data.message)
                     }
                 })
-        }
-
-
-    return (
+     }
+     return (
         <>
-            {!user.id && <h1>Adeverinta noua</h1>}
+            {<h1>Setari</h1>}
             <div className="card animated fadeInDown">
                 {loading && (
                     <div className="text-center">
@@ -59,8 +57,11 @@ export default function AppointmentForm() {
                 }
                 {!loading && (
                     <form onSubmit={onSubmit}>
-                        <input value={user.motivatie} onChange={ev => setUser({...user, motivatie: ev.target.value})} placeholder="Motiv cerere adeverinta"/>
-                        <button className="btn">Trimite</button>
+                        <input value={user.numeFacultate} onChange={ev => setUser({...user, numeFacultate: ev.target.value})} placeholder="Nume Facultate"/>
+                        <input value={user.acronim} onChange={ev => setUser({...user, acronim: ev.target.value})} placeholder="Acronim"/>
+                        <input value={user.numeUniversitate} onChange={ev => setUser({...user, numeUniversitate: ev.target.value})} placeholder="Nume Universitate"/>
+
+                        <button className="btn">Salvare</button>
                     </form>
                 )}
             </div>
